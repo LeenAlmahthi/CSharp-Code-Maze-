@@ -70,6 +70,14 @@ public class Program
         public string Email { get; set; } = "";
         public string Password { get; set; } = "";
     }
+    
+    public class UniStudent
+    {
+        public int Id { get; set; }
+        public string FistName { get; set; } = "";
+        public string EmailAddress { get; set; } = "";
+        public string Password { get; set; } = "";
+    }
 
     public static void Main()
     {
@@ -90,14 +98,29 @@ public class Program
             },
             loggerFactory
         );
+        var UniConfig = new MapperConfiguration(
+            cfg =>
+            {
+                cfg.CreateMap<Student, UniStudent>()
+                    .ForMember(dest => dest.FistName, opt => opt.MapFrom(src => src.Name)).ForMember(dest => dest.EmailAddress, opt => opt.MapFrom(src => src.Email));   //  here u make a mapper tell it copy the data from a Student to the StudentDto 
+            },
+            loggerFactory
+        );
 
         var mapper = config.CreateMapper(); // know here we take copy of the mapperr we builds it 
+        var Unimapper = UniConfig.CreateMapper();
 
+        var uni = Unimapper.Map<UniStudent>(student);
         var studentDto = mapper.Map<StudentDto>(student);   // the actual copy here 
 
         Console.WriteLine(studentDto.Id);
         Console.WriteLine(studentDto.Name);
         Console.WriteLine(studentDto.Email);
         Console.WriteLine(studentDto.Password);
+        
+        Console.WriteLine(uni.Id);
+        Console.WriteLine(uni.FistName);
+        Console.WriteLine(uni.EmailAddress);
+        Console.WriteLine(uni.Password);
     }
 }

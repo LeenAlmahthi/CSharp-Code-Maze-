@@ -50,9 +50,10 @@ public class Program
 
         PropertyInfo? property =
             typeof(Person).GetProperty(propertyName);
-
+        // holds information about the Age property.
         object? value =
             property?.GetValue(person);
+        // GetValue() returns an object? because the property can have different types, so Reflection exposes the result as object. 
 
         Console.WriteLine(value);
     }
