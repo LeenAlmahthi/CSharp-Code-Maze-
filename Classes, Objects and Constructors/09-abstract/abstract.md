@@ -14,7 +14,8 @@
           |                   |
        "BMW"             "Porsche"
 ```
-
+virtual → has a base implementation
+abstract → has no implementation
 ---
 
 ## The Main Idea
