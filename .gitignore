@@ -11,9 +11,6 @@ obj/
 
 # Visual Studio Code
 .vscode/
-!.vscode/
-!.vscode/settings.json
-!.vscode/extensions.json
 
 # Rider
 .idea/
